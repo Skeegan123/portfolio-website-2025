@@ -6,24 +6,24 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow">
         <section className="bg-white py-20">
-          <div className="container mx-auto px-6 flex items-center justify-between">
-            <div className="w-1/2">
+          <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+            <div className="w-full md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
               <h1 className="text-4xl font-bold text-gray-800 mb-4">Keegan Gaffney</h1>
               <p className="text-gray-600 mb-8">Computer Science Student at Montana State University.</p>
               <div className="space-x-4">
-                <Link href="/projects">
+                <Link href="/projects" aria-label="View my portfolio projects">
                   <button className="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90">
                     View Projects
                   </button>
                 </Link>
-                <Link href="/resume">
+                <Link href="/resume" aria-label="View my professional resume">
                   <button className="text-primary border border-primary px-6 py-2 rounded-full hover:bg-primary/10">
                     Resume
                   </button>
                 </Link>
               </div>
             </div>
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <div className="aspect-square relative overflow-hidden rounded-3xl">
                 <Image 
                   src="https://imagedelivery.net/yJ7bepQTW_ib5TtPRM2R9A/7269a7c2-d113-4c67-334f-3505ce49d300/public?height=1366&width=768" 
@@ -87,11 +87,17 @@ export default function Home() {
               }
             ].map((project, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <Image src={project.image} alt={project.title} width={400} height={400} className="w-full h-4/6 object-cover" />
+                <Image src={project.image} alt={`Screenshot of ${project.title} project`} width={400} height={400} className="w-full h-4/6 object-cover" />
                 <div className="p-4">
                   <h4 className="text-xl font-bold mb-2">{project.title}</h4>
                   <p className="text-gray-600 mb-4">{project.description}</p>
-                  <Link href={project.link} className="text-blue-600 hover:underline">Learn More</Link>
+                  <Link 
+                    href={project.link} 
+                    className="text-blue-600 hover:underline"
+                    aria-label={`Learn more about ${project.title} project`}
+                  >
+                    Learn More
+                  </Link>
                 </div>
               </div>
             ))}
